@@ -23,11 +23,12 @@ export class BoardsService {
     return board;
   }
 
-  async deleteBoard(id: number): Promise<void> {
+  async deleteBoard(id: number): Promise<String> {
     const result = await this.boardRepository.delete(id);
     if (result.affected === 0) {
       throw new NotFoundException(`id가 ${id}인 것을 찾을 수 없습니다.`);
     }
+    return "삭제되었습니다.";
   }
 
   async getBoardById(id: number): Promise<Board> {
